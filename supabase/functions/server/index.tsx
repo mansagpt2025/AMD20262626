@@ -17,15 +17,20 @@ app.use('*', logger(console.log));
 
 // Enable CORS for all routes and methods
 app.use(
-  "/*",
+  '*',
   cors({
-    origin: "*",
-    allowHeaders: ["Content-Type", "Authorization"],
-    allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    exposeHeaders: ["Content-Length"],
+    origin: '*',
+    allowHeaders: ['Content-Type', 'Authorization'],
+    allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    exposeHeaders: ['Content-Length'],
     maxAge: 600,
   }),
 );
+
+// Explicitly handle OPTIONS preflight requests
+app.options('*', (c) => {
+  return c.text('OK');
+});
 
 // Health check endpoint
 app.get("/health", (c) => {
