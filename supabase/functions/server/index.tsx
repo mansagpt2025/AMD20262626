@@ -1,8 +1,8 @@
-import { Hono } from "npm:hono";
-import { cors } from "npm:hono/cors";
-import { logger } from "npm:hono/logger";
+import { Hono } from "hono";
+import { cors } from "hono/cors";
+import { logger } from "hono/logger";
 import * as kv from "./kv_store.tsx";
-import { createClient } from "npm:@supabase/supabase-js";
+import { createClient } from "@supabase/supabase-js";
 
 const app = new Hono();
 
@@ -17,7 +17,7 @@ app.use('*', logger(console.log));
 
 // Enable CORS for all routes and methods
 app.use(
-  '/*',
+  '*',
   cors({
     origin: '*',
     allowHeaders: ['Content-Type', 'Authorization', 'Accept', 'Origin'],
@@ -28,7 +28,7 @@ app.use(
 );
 
 // Explicitly handle OPTIONS preflight requests
-app.options('/*', (c) => {
+app.options('*', (c) => {
   return c.text('OK');
 });
 
@@ -266,7 +266,7 @@ app.get("/my-packages/:phone", async (c) => {
     }
 
     const subscriptions = user.subscriptions || [];
-    const packages = [];
+    const packages: any[] = [];
 
     for (const sub of subscriptions) {
       const pkg = await kv.get(`package:${sub.packageId}`);
@@ -368,7 +368,7 @@ app.post("/submit-exam", async (c) => {
 
     // Calculate score
     let correctAnswers = 0;
-    const results = [];
+    const results: any[] = [];
 
     for (let i = 0; i < exam.questions.length; i++) {
       const question = exam.questions[i];
