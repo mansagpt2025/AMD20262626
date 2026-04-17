@@ -28,12 +28,12 @@ app.use(
 );
 
 // Health check endpoint
-app.get("/make-server-85537280/health", (c) => {
+app.get("/health", (c) => {
   return c.json({ status: "ok" });
 });
 
 // Initialize database with admin user
-app.post("/make-server-85537280/init-db", async (c) => {
+app.post("/init-db", async (c) => {
   try {
     // Create admin user
     const adminData = {
@@ -59,7 +59,7 @@ app.post("/make-server-85537280/init-db", async (c) => {
 });
 
 // Student signup
-app.post("/make-server-85537280/signup", async (c) => {
+app.post("/signup", async (c) => {
   try {
     const body = await c.req.json();
     const { phone, password, ...userData } = body;
@@ -100,7 +100,7 @@ app.post("/make-server-85537280/signup", async (c) => {
 });
 
 // Login
-app.post("/make-server-85537280/login", async (c) => {
+app.post("/login", async (c) => {
   try {
     const { phone, password } = await c.req.json();
 
@@ -126,7 +126,7 @@ app.post("/make-server-85537280/login", async (c) => {
 });
 
 // Get user profile
-app.get("/make-server-85537280/profile/:phone", async (c) => {
+app.get("/profile/:phone", async (c) => {
   try {
     const phone = c.req.param('phone');
     const user = await kv.get(`user:phone:${phone}`);
@@ -143,7 +143,7 @@ app.get("/make-server-85537280/profile/:phone", async (c) => {
 });
 
 // Update password
-app.put("/make-server-85537280/change-password", async (c) => {
+app.put("/change-password", async (c) => {
   try {
     const { phone, oldPassword, newPassword } = await c.req.json();
 
@@ -168,7 +168,7 @@ app.put("/make-server-85537280/change-password", async (c) => {
 });
 
 // Get all packages
-app.get("/make-server-85537280/packages", async (c) => {
+app.get("/packages", async (c) => {
   try {
     const packages = await kv.getByPrefix("package:");
     return c.json({ success: true, packages });
@@ -179,7 +179,7 @@ app.get("/make-server-85537280/packages", async (c) => {
 });
 
 // Get package by ID
-app.get("/make-server-85537280/packages/:id", async (c) => {
+app.get("/packages/:id", async (c) => {
   try {
     const id = c.req.param('id');
     const pkg = await kv.get(`package:${id}`);
@@ -196,7 +196,7 @@ app.get("/make-server-85537280/packages/:id", async (c) => {
 });
 
 // Purchase package
-app.post("/make-server-85537280/purchase", async (c) => {
+app.post("/purchase", async (c) => {
   try {
     const { phone, packageId, paymentMethod, code } = await c.req.json();
 
@@ -251,7 +251,7 @@ app.post("/make-server-85537280/purchase", async (c) => {
 });
 
 // Get user's subscribed packages
-app.get("/make-server-85537280/my-packages/:phone", async (c) => {
+app.get("/my-packages/:phone", async (c) => {
   try {
     const phone = c.req.param('phone');
     const user = await kv.get(`user:phone:${phone}`);
@@ -278,7 +278,7 @@ app.get("/make-server-85537280/my-packages/:phone", async (c) => {
 });
 
 // Get notifications
-app.get("/make-server-85537280/notifications/:phone", async (c) => {
+app.get("/notifications/:phone", async (c) => {
   try {
     const phone = c.req.param('phone');
     const notifications = await kv.getByPrefix(`notification:${phone}:`);
@@ -293,7 +293,7 @@ app.get("/make-server-85537280/notifications/:phone", async (c) => {
 });
 
 // Mark notification as read
-app.put("/make-server-85537280/notifications/:id/read", async (c) => {
+app.put("/notifications/:id/read", async (c) => {
   try {
     const id = c.req.param('id');
     const notification = await kv.get(id);
@@ -314,7 +314,7 @@ app.put("/make-server-85537280/notifications/:id/read", async (c) => {
 });
 
 // Delete notification
-app.delete("/make-server-85537280/notifications/:id", async (c) => {
+app.delete("/notifications/:id", async (c) => {
   try {
     const id = c.req.param('id');
     await kv.del(id);
@@ -326,7 +326,7 @@ app.delete("/make-server-85537280/notifications/:id", async (c) => {
 });
 
 // Get homework scores
-app.get("/make-server-85537280/homework-scores/:phone", async (c) => {
+app.get("/homework-scores/:phone", async (c) => {
   try {
     const phone = c.req.param('phone');
     const scores = await kv.getByPrefix(`homework:${phone}:`);
@@ -339,7 +339,7 @@ app.get("/make-server-85537280/homework-scores/:phone", async (c) => {
 });
 
 // Get exam scores
-app.get("/make-server-85537280/exam-scores/:phone", async (c) => {
+app.get("/exam-scores/:phone", async (c) => {
   try {
     const phone = c.req.param('phone');
     const scores = await kv.getByPrefix(`exam:${phone}:`);
@@ -352,7 +352,7 @@ app.get("/make-server-85537280/exam-scores/:phone", async (c) => {
 });
 
 // Submit exam
-app.post("/make-server-85537280/submit-exam", async (c) => {
+app.post("/submit-exam", async (c) => {
   try {
     const { phone, examId, answers, timeTaken } = await c.req.json();
 
@@ -409,7 +409,7 @@ app.post("/make-server-85537280/submit-exam", async (c) => {
 });
 
 // Get comprehensive exams
-app.get("/make-server-85537280/comprehensive-exams", async (c) => {
+app.get("/comprehensive-exams", async (c) => {
   try {
     const exams = await kv.getByPrefix("exam:comprehensive:");
     return c.json({ success: true, exams });
@@ -420,7 +420,7 @@ app.get("/make-server-85537280/comprehensive-exams", async (c) => {
 });
 
 // Create package (Admin only)
-app.post("/make-server-85537280/admin/create-package", async (c) => {
+app.post("/admin/create-package", async (c) => {
   try {
     const body = await c.req.json();
     const packageId = `pkg_${Date.now()}`;
