@@ -48,7 +48,7 @@ export function ChangePasswordPage() {
       const user = JSON.parse(localStorage.getItem('user') || '{}');
 
       const response = await fetch(
-        `https://${projectId}.supabase.co/functions/v1/make-server-85537280/change-password`,
+        `https://${projectId}.supabase.co/functions/v1/server/change-password`,
         {
           method: 'PUT',
           headers: {

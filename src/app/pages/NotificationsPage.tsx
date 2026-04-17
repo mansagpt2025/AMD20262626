@@ -34,7 +34,7 @@ export function NotificationsPage() {
       const user = JSON.parse(localStorage.getItem('user') || '{}');
       
       const response = await fetch(
-        `https://${projectId}.supabase.co/functions/v1/make-server-85537280/notifications/${user.phone}`,
+        `https://${projectId}.supabase.co/functions/v1/server/notifications/${user.phone}`,
         { headers: { 'Authorization': `Bearer ${publicAnonKey}` } }
       );
 
@@ -59,7 +59,7 @@ export function NotificationsPage() {
     if (!notification.read) {
       try {
         const response = await fetch(
-          `https://${projectId}.supabase.co/functions/v1/make-server-85537280/notifications/${notification.id}/read`,
+          `https://${projectId}.supabase.co/functions/v1/server/notifications/${notification.id}/read`,
           {
             method: 'PUT',
             headers: {
@@ -90,7 +90,7 @@ export function NotificationsPage() {
 
     try {
       const response = await fetch(
-        `https://${projectId}.supabase.co/functions/v1/make-server-85537280/notifications/${notificationId}`,
+        `https://${projectId}.supabase.co/functions/v1/server/notifications/${notificationId}`,
         {
           method: 'DELETE',
           headers: {

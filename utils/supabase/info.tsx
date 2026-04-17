@@ -2,3 +2,5 @@
 
 export const projectId = "tybebkidedofqavukggj"
 export const publicAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR5YmVia2lkZWRvZnFhdnVrZ2dqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwOTI5NjEsImV4cCI6MjA4OTY2ODk2MX0.L-ZuwKzEcyZgYMjh6ePrp7pB1jjTkzDhEIo1UyYBSlo"
+export const functionName = "server"
+export const functionBaseUrl = `https://${projectId}.supabase.co/functions/v1/${functionName}`

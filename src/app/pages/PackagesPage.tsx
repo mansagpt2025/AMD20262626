@@ -51,7 +51,7 @@ export function PackagesPage() {
 
       // Load all packages
       const packagesRes = await fetch(
-        `https://${projectId}.supabase.co/functions/v1/make-server-85537280/packages`,
+        `https://${projectId}.supabase.co/functions/v1/server/packages`,
         { headers: { 'Authorization': `Bearer ${publicAnonKey}` } }
       );
       const packagesData = await packagesRes.json();
@@ -61,7 +61,7 @@ setPackages(Array.isArray(packagesData.packages) ? packagesData.packages : []);
 
       // Load user's subscribed packages
       const myPackagesRes = await fetch(
-        `https://${projectId}.supabase.co/functions/v1/make-server-85537280/my-packages/${user.phone}`,
+        `https://${projectId}.supabase.co/functions/v1/server/my-packages/${user.phone}`,
         { headers: { 'Authorization': `Bearer ${publicAnonKey}` } }
       );
       const myPackagesData = await myPackagesRes.json();
@@ -85,7 +85,7 @@ setPackages(Array.isArray(packagesData.packages) ? packagesData.packages : []);
       const user = JSON.parse(localStorage.getItem('user') || '{}');
       
       const response = await fetch(
-        `https://${projectId}.supabase.co/functions/v1/make-server-85537280/purchase`,
+        `https://${projectId}.supabase.co/functions/v1/server/purchase`,
         {
           method: 'POST',
           headers: {

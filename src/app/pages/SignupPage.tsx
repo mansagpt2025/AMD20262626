@@ -2,9 +2,8 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { User, Phone, MapPin, Mail, Lock, GraduationCap, AlertCircle, CheckCircle, ChevronLeft, ChevronRight } from 'lucide-react';
-import { useAuth } from '../../contexts/AuthContext';
 import { egyptGovernorates } from '../../data/cities';
-import { projectId, publicAnonKey } from '../../../utils/supabase/info';
+import { functionBaseUrl, publicAnonKey } from '../../../utils/supabase/info';
 import { toast } from 'sonner';
 
 export function SignupPage() {
@@ -12,7 +11,6 @@ export function SignupPage() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-  const { setUser } = useAuth();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -107,7 +105,7 @@ export function SignupPage() {
       const birthDate = `${formData.birthYear}-${formData.birthMonth.padStart(2, '0')}-${formData.birthDay.padStart(2, '0')}`;
 
       const response = await fetch(
-        `https://${projectId}.supabase.co/functions/v1/make-server-85537280/signup`,
+        `${functionBaseUrl}/signup`,
         {
           method: 'POST',
           headers: {

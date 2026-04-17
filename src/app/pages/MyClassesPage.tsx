@@ -32,7 +32,7 @@ export function MyClassesPage() {
       const user = JSON.parse(localStorage.getItem('user') || '{}');
       
       const response = await fetch(
-        `https://${projectId}.supabase.co/functions/v1/make-server-85537280/my-packages/${user.phone}`,
+        `https://${projectId}.supabase.co/functions/v1/server/my-packages/${user.phone}`,
         { headers: { 'Authorization': `Bearer ${publicAnonKey}` } }
       );
 

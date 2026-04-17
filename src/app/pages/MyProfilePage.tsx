@@ -26,7 +26,7 @@ export function MyProfilePage() {
 
       // Load homework scores
       const homeworkRes = await fetch(
-        `https://${projectId}.supabase.co/functions/v1/make-server-85537280/homework-scores/${userData.phone}`,
+        `https://${projectId}.supabase.co/functions/v1/server/homework-scores/${userData.phone}`,
         { headers: { 'Authorization': `Bearer ${publicAnonKey}` } }
       );
       const homeworkData = await homeworkRes.json();
@@ -36,7 +36,7 @@ export function MyProfilePage() {
 
       // Load exam scores
       const examRes = await fetch(
-        `https://${projectId}.supabase.co/functions/v1/make-server-85537280/exam-scores/${userData.phone}`,
+        `https://${projectId}.supabase.co/functions/v1/server/exam-scores/${userData.phone}`,
         { headers: { 'Authorization': `Bearer ${publicAnonKey}` } }
       );
       const examData = await examRes.json();

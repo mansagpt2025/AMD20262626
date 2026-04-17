@@ -16,7 +16,7 @@ export function InitDatabasePage() {
 
     try {
       const response = await fetch(
-        `https://${projectId}.supabase.co/functions/v1/make-server-85537280/init-db`,
+        `https://${projectId}.supabase.co/functions/v1/server/init-db`,
         {
           method: 'POST',
           headers: {
