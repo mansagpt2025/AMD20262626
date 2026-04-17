@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { ArrowLeft, Ban, Search, Filter, Users, Activity, TrendingUp, Eye } from 'lucide-react';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 
@@ -25,6 +25,7 @@ interface ActivityLog {
   content_completed: number;
   last_activity: string;
   success_rate: number;
+  activity_score: number;
 }
 
 export function UserBanManagementPage() {
@@ -76,6 +77,7 @@ export function UserBanManagementPage() {
       content_completed: 28,
       last_activity: '2026-04-17T14:30:00',
       success_rate: 87,
+      activity_score: 85,
     },
     {
       user_id: 3,
@@ -85,6 +87,7 @@ export function UserBanManagementPage() {
       content_completed: 45,
       last_activity: '2026-04-17T15:00:00',
       success_rate: 95,
+      activity_score: 95,
     },
   ]);
 
@@ -427,3 +430,4 @@ export function UserBanManagementPage() {
     </div>
   );
 }
+

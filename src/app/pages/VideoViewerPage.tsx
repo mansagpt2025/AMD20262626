@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { ArrowLeft, Lock, Eye } from 'lucide-react';
-import { useNavigate, useSearchParams } from 'react-router';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 export function VideoViewerPage() {
   const navigate = useNavigate();
@@ -166,3 +166,4 @@ export function VideoViewerPage() {
     </div>
   );
 }
+

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Bell, Wallet, Menu, BookOpen, GraduationCap, Gift, Award, Clock } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
@@ -351,3 +351,4 @@ export function StudentDashboard() {
     </div>
   );
 }
+

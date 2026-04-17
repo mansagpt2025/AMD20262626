@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, type Dispatch, type SetStateAction } from 'react';
 import { motion } from 'motion/react';
 import { ArrowLeft, Plus, Edit, Trash2, Search, Package, Calendar, FileText, Gift, Award } from 'lucide-react';
-import { Link, useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 
@@ -461,14 +461,28 @@ function WeeksTab({ weeks, setWeeks, packages, grade }: any) {
   );
 }
 
+interface ContentTabProps {
+  content: Content[];
+  setContent: Dispatch<SetStateAction<Content[]>>;
+  weeks: Week[];
+  grade: string;
+}
+
 // Content Tab Component
-function ContentTab({ content, setContent, weeks, grade }: any) {
+function ContentTab({ content, setContent, weeks, grade }: ContentTabProps) {
   const [isCreating, setIsCreating] = useState(false);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<{
+    name: string;
+    description: string;
+    type: Content['type'];
+    week_ids: number[];
+    youtube_link: string;
+    drive_link: string;
+  }>({
     name: '',
     description: '',
-    type: 'video_lecture' as const,
-    week_ids: [] as number[],
+    type: 'video_lecture',
+    week_ids: [],
     youtube_link: '',
     drive_link: '',
   });
@@ -680,3 +694,4 @@ function ComprehensiveTab({ grade }: any) {
     </div>
   );
 }
+

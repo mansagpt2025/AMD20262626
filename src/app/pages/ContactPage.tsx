@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Facebook, Youtube, Instagram, Send, MessageCircle, ArrowRight } from 'lucide-react';
 
@@ -160,3 +160,4 @@ export function ContactPage() {
     </div>
   );
 }
+

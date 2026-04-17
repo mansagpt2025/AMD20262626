@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { ArrowLeft, PlayCircle, FileText, CheckSquare, Award, Lock, CheckCircle } from 'lucide-react';
-import { useNavigate, useSearchParams, Link } from 'react-router';
+import { useNavigate, useSearchParams, Link } from 'react-router-dom';
 
 interface ContentItem {
   id: number;
@@ -365,3 +365,4 @@ export function PackageContentPage() {
     </div>
   );
 }
+

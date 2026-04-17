@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { MessageCircle, Send } from 'lucide-react';
 import { Footer } from '../components/Footer';
@@ -117,3 +117,4 @@ export function AcademicSupportPage() {
     </div>
   );
 }
+

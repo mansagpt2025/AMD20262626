@@ -1,11 +1,11 @@
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { BookOpen, Users, Trophy, Calendar, GraduationCap, Target } from 'lucide-react';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { useAuth } from '../../contexts/AuthContext';
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 export function LandingPage() {
   const { user } = useAuth();
@@ -339,3 +339,4 @@ export function LandingPage() {
     </div>
   );
 }
+

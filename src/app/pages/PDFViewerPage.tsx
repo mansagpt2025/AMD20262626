@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { ArrowLeft, Lock, Eye, Download, XCircle } from 'lucide-react';
-import { useNavigate, useSearchParams } from 'react-router';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 export function PDFViewerPage() {
   const navigate = useNavigate();
@@ -190,3 +190,4 @@ export function PDFViewerPage() {
     </div>
   );
 }
+

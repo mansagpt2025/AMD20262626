@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { User, Phone, MapPin, Mail, Lock, GraduationCap, AlertCircle, CheckCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
@@ -304,7 +304,7 @@ export function SignupPage() {
                             className="w-full pr-11 pl-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white appearance-none"
                           >
                             <option value="">اختر المحافظة</option>
-                            {Object.keys(egyptGovernorates).map((gov) => (
+                            {egyptGovernorates.map((gov) => (
                               <option key={gov} value={gov}>{gov}</option>
                             ))}
                           </select>
@@ -323,7 +323,7 @@ export function SignupPage() {
                             className="w-full pr-11 pl-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white appearance-none disabled:opacity-50"
                           >
                             <option value="">اختر المدينة</option>
-                            {formData.governorate && egyptGovernorates[formData.governorate]?.map((city) => (
+                            {formData.governorate && egyptGovernorates.map((city) => (
                               <option key={city} value={city}>{city}</option>
                             ))}
                           </select>
@@ -591,3 +591,4 @@ export function SignupPage() {
     </div>
   );
 }
+

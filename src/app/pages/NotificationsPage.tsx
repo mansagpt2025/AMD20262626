@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, BookOpen, Bell, Trash2, Mail, MailOpen } from 'lucide-react';
 import { Card, CardContent } from '../components/ui/card';
@@ -317,3 +317,4 @@ export function NotificationsPage() {
     </div>
   );
 }
+

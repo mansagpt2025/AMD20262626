@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { ArrowLeft, Send, Bell, Archive, Trash2, Upload, X, Filter } from 'lucide-react';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 
@@ -376,3 +376,4 @@ export function NotificationsManagementPage() {
     </div>
   );
 }
+

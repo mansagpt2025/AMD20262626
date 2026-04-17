@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router';
+import { useState, useEffect, type ChangeEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, BookOpen, ShoppingCart, Check, Tag, Calendar, Package } from 'lucide-react';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../components/ui/card';
@@ -56,7 +56,7 @@ export function PackagesPage() {
       );
       const packagesData = await packagesRes.json();
       if (packagesData.success) {
-        setPackages(packagesData.packages);
+setPackages(Array.isArray(packagesData.packages) ? packagesData.packages : []);
       }
 
       // Load user's subscribed packages
@@ -272,7 +272,7 @@ export function PackagesPage() {
                     id="purchase-code"
                     placeholder="XXXX-XXXX-XXXX"
                     value={code}
-                    onChange={(e) => setCode(e.target.value)}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => setCode(e.target.value)}
                     className="mt-2"
                   />
                 </motion.div>
@@ -388,3 +388,4 @@ function PackageCard({
     </motion.div>
   );
 }
+

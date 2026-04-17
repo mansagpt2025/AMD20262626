@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { ArrowLeft, Key, Plus, Trash2, Copy, CheckCircle, XCircle, Filter } from 'lucide-react';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 
@@ -455,3 +455,4 @@ export function CodesManagementPage() {
     </div>
   );
 }
+

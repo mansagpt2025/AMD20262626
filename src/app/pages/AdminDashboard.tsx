@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Users, BookOpen, Award, Ban, Wallet, Key, Bell, Code } from 'lucide-react';
 import { Navbar } from '../components/Navbar';
@@ -152,3 +152,4 @@ export function AdminDashboard() {
     </div>
   );
 }
+

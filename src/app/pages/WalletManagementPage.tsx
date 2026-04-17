@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { ArrowLeft, Wallet, Plus, Minus, Search, Filter, Download, TrendingUp } from 'lucide-react';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 
@@ -478,3 +478,4 @@ export function WalletManagementPage() {
     </div>
   );
 }
+

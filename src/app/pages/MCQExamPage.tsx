@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowLeft, Clock, CheckCircle, XCircle, Award, AlertCircle } from 'lucide-react';
-import { useNavigate, useSearchParams } from 'react-router';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 interface Question {
   id: number;
@@ -426,3 +426,4 @@ export function MCQExamPage() {
     </div>
   );
 }
+
