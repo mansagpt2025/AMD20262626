@@ -5,7 +5,7 @@ import { ArrowRight, BookOpen, Calendar, Layers, Lightbulb } from 'lucide-react'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
-import { projectId, publicAnonKey } from '../../../utils/supabase/info';
+import { functionBaseUrl, publicAnonKey } from '../../../utils/supabase/info';
 import { toast } from 'sonner';
 
 interface Package {
@@ -32,7 +32,7 @@ export function MyClassesPage() {
       const user = JSON.parse(localStorage.getItem('user') || '{}');
       
       const response = await fetch(
-        `https://${projectId}.supabase.co/functions/v1/server/my-packages/${user.phone}`,
+        `${functionBaseUrl}/my-classes/${user.phone}`,
         { headers: { 'Authorization': `Bearer ${publicAnonKey}` } }
       );
 

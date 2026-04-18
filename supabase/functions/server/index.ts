@@ -1,7 +1,6 @@
 import { Hono } from "hono";
-import { cors } from "hono/cors";
 import { logger } from "hono/logger";
-import * as kv from "./kv_store.tsx";
+import * as kv from "./kv_store.ts";
 import { createClient } from "@supabase/supabase-js";
 
 const app = new Hono();
@@ -12,24 +11,27 @@ const supabase = createClient(
   Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') || '',
 );
 
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization, Accept, Origin',
+  'Access-Control-Expose-Headers': 'Content-Length',
+};
+
 // Enable logger
 app.use('*', logger(console.log));
 
-// Enable CORS for all routes and methods
-app.use(
-  '*',
-  cors({
-    origin: '*',
-    allowHeaders: ['Content-Type', 'Authorization', 'Accept', 'Origin'],
-    allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    exposeHeaders: ['Content-Length'],
-    maxAge: 600,
-  }),
-);
+// Respond to all preflight OPTIONS requests and attach CORS headers to all responses.
+app.all('*', async (c, next) => {
+  if (c.req.method === 'OPTIONS') {
+    return c.text('OK', 200, { headers: corsHeaders });
+  }
 
-// Explicitly handle OPTIONS preflight requests
-app.options('*', (c) => {
-  return c.text('OK');
+  const res = await next();
+  for (const [key, value] of Object.entries(corsHeaders)) {
+    res.headers.set(key, value);
+  }
+  return res;
 });
 
 // Health check endpoint

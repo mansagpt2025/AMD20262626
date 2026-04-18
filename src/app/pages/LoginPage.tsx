@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Phone, Lock, AlertCircle } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
-import { projectId, publicAnonKey } from '../../../utils/supabase/info';
+import { functionBaseUrl, publicAnonKey } from '../../../utils/supabase/info';
 import { toast } from 'sonner';
 
 export function LoginPage() {
@@ -40,7 +40,7 @@ export function LoginPage() {
 
     try {
       const response = await fetch(
-        `https://${projectId}.supabase.co/functions/v1/server/login`,
+        `${functionBaseUrl}/login`,
         {
           method: 'POST',
           headers: {

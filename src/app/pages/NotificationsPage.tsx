@@ -6,7 +6,7 @@ import { Card, CardContent } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../components/ui/dialog';
-import { projectId, publicAnonKey } from '../../../utils/supabase/info';
+import { functionBaseUrl, publicAnonKey } from '../../../utils/supabase/info';
 import { toast } from 'sonner';
 
 interface Notification {
@@ -34,7 +34,7 @@ export function NotificationsPage() {
       const user = JSON.parse(localStorage.getItem('user') || '{}');
       
       const response = await fetch(
-        `https://${projectId}.supabase.co/functions/v1/server/notifications/${user.phone}`,
+        `${functionBaseUrl}/notifications/${user.phone}`,
         { headers: { 'Authorization': `Bearer ${publicAnonKey}` } }
       );
 
@@ -59,7 +59,7 @@ export function NotificationsPage() {
     if (!notification.read) {
       try {
         const response = await fetch(
-          `https://${projectId}.supabase.co/functions/v1/server/notifications/${notification.id}/read`,
+          `${functionBaseUrl}/notifications/${notification.id}/read`,
           {
             method: 'PUT',
             headers: {
@@ -90,7 +90,7 @@ export function NotificationsPage() {
 
     try {
       const response = await fetch(
-        `https://${projectId}.supabase.co/functions/v1/server/notifications/${notificationId}`,
+        `${functionBaseUrl}/notifications/${notificationId}`,
         {
           method: 'DELETE',
           headers: {

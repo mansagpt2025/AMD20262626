@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card'
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { Button } from '../components/ui/button';
-import { projectId, publicAnonKey } from '../../../utils/supabase/info';
+import { functionBaseUrl, publicAnonKey } from '../../../utils/supabase/info';
 import { toast } from 'sonner';
 
 export function ChangePasswordPage() {
@@ -48,7 +48,7 @@ export function ChangePasswordPage() {
       const user = JSON.parse(localStorage.getItem('user') || '{}');
 
       const response = await fetch(
-        `https://${projectId}.supabase.co/functions/v1/server/change-password`,
+        `${functionBaseUrl}/change-password`,
         {
           method: 'PUT',
           headers: {

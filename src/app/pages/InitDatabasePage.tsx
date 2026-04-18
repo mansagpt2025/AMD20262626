@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 import { Database, CheckCircle, AlertCircle } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
-import { projectId, publicAnonKey } from '../../../utils/supabase/info';
+import { functionBaseUrl, publicAnonKey } from '../../../utils/supabase/info';
 
 export function InitDatabasePage() {
   const [loading, setLoading] = useState(false);
@@ -16,7 +16,7 @@ export function InitDatabasePage() {
 
     try {
       const response = await fetch(
-        `https://${projectId}.supabase.co/functions/v1/server/init-db`,
+        `${functionBaseUrl}/init-db`,
         {
           method: 'POST',
           headers: {

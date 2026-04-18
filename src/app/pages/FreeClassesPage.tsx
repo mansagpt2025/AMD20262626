@@ -5,7 +5,7 @@ import { ArrowRight, BookOpen, Gift, Check, Calendar, Layers } from 'lucide-reac
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
-import { projectId, publicAnonKey } from '../../../utils/supabase/info';
+import { functionBaseUrl, publicAnonKey } from '../../../utils/supabase/info';
 import { toast } from 'sonner';
 
 interface FreePackage {
@@ -36,7 +36,7 @@ export function FreeClassesPage() {
 
       // Load all packages and filter free ones
       const packagesRes = await fetch(
-        `https://${projectId}.supabase.co/functions/v1/server/packages`,
+        `${functionBaseUrl}/packages`,
         { headers: { 'Authorization': `Bearer ${publicAnonKey}` } }
       );
       const packagesData = await packagesRes.json();
@@ -50,7 +50,7 @@ export function FreeClassesPage() {
 
       // Load user's subscribed packages
       const myPackagesRes = await fetch(
-        `https://${projectId}.supabase.co/functions/v1/server/my-packages/${user.phone}`,
+        `${functionBaseUrl}/my-packages/${user.phone}`,
         { headers: { 'Authorization': `Bearer ${publicAnonKey}` } }
       );
       const myPackagesData = await myPackagesRes.json();
@@ -72,7 +72,7 @@ export function FreeClassesPage() {
       const user = JSON.parse(localStorage.getItem('user') || '{}');
       
       const response = await fetch(
-        `https://${projectId}.supabase.co/functions/v1/server/purchase`,
+        `${functionBaseUrl}/purchase`,
         {
           method: 'POST',
           headers: {

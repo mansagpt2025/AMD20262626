@@ -10,7 +10,7 @@ import { RadioGroup, RadioGroupItem } from '../components/ui/radio-group';
 import { Label } from '../components/ui/label';
 import { Input } from '../components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
-import { projectId, publicAnonKey } from '../../../utils/supabase/info';
+import { functionBaseUrl, publicAnonKey } from '../../../utils/supabase/info';
 import { toast } from 'sonner';
 
 interface Package {
@@ -51,7 +51,7 @@ export function PackagesPage() {
 
       // Load all packages
       const packagesRes = await fetch(
-        `https://${projectId}.supabase.co/functions/v1/server/packages`,
+        `${functionBaseUrl}/packages`,
         { headers: { 'Authorization': `Bearer ${publicAnonKey}` } }
       );
       const packagesData = await packagesRes.json();
@@ -61,7 +61,7 @@ setPackages(Array.isArray(packagesData.packages) ? packagesData.packages : []);
 
       // Load user's subscribed packages
       const myPackagesRes = await fetch(
-        `https://${projectId}.supabase.co/functions/v1/server/my-packages/${user.phone}`,
+        `${functionBaseUrl}/my-packages/${user.phone}`,
         { headers: { 'Authorization': `Bearer ${publicAnonKey}` } }
       );
       const myPackagesData = await myPackagesRes.json();
@@ -85,7 +85,7 @@ setPackages(Array.isArray(packagesData.packages) ? packagesData.packages : []);
       const user = JSON.parse(localStorage.getItem('user') || '{}');
       
       const response = await fetch(
-        `https://${projectId}.supabase.co/functions/v1/server/purchase`,
+        `${functionBaseUrl}/purchase`,
         {
           method: 'POST',
           headers: {

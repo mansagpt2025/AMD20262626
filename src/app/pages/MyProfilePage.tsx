@@ -6,7 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs'
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../components/ui/table';
 import { Badge } from '../components/ui/badge';
-import { projectId, publicAnonKey } from '../../../utils/supabase/info';
+import { functionBaseUrl, publicAnonKey } from '../../../utils/supabase/info';
 
 export function MyProfilePage() {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ export function MyProfilePage() {
 
       // Load homework scores
       const homeworkRes = await fetch(
-        `https://${projectId}.supabase.co/functions/v1/server/homework-scores/${userData.phone}`,
+        `${functionBaseUrl}/homework-scores/${userData.phone}`,
         { headers: { 'Authorization': `Bearer ${publicAnonKey}` } }
       );
       const homeworkData = await homeworkRes.json();
@@ -36,7 +36,7 @@ export function MyProfilePage() {
 
       // Load exam scores
       const examRes = await fetch(
-        `https://${projectId}.supabase.co/functions/v1/server/exam-scores/${userData.phone}`,
+        `${functionBaseUrl}/exam-scores/${userData.phone}`,
         { headers: { 'Authorization': `Bearer ${publicAnonKey}` } }
       );
       const examData = await examRes.json();
